@@ -1,0 +1,16 @@
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng texlive-lang-french
+  latexmk
+script:
+- mkdir _build
+- latexmk -pdf -output-directory=_build -jobname=communication communication.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: Pg5QezPjEy4ICd6a7CkfPNBIoDDEVJDzF4J1rCrA+x8iQchITWr4ziiI+wjJMsCKgWXZL+taCle2iIa6h/XPp2SKKYK0oquPU7MDw9lmXuoyh/Gh3kbiyqeZJ0/IvfjEjTD4tWkOS8V5/e58ipQPrbMFHTzZX2GC1uNhrSS3h0iQ6vm/ToPfHkBGDp7eaIJ30uRE/eP+JJ+M+oOoH4+nzHcgbjFut63ODZGIFq14Mu3TjKmJgrA6dNP6TZVNCi8TEuDhPtw4+DN5HulbQn62s3c17lp21lgsJgEkrXdY1g5RlBYG3uH9pUVAYeZdl7ItSnkMxlXquZ5Of2Hntp9nNwHyVgbyx8OEJ6z7qzS7yyysNB5GV7WRTLuli8a3ez+hxvDE03kQeJThHEiwgco0cD31458ut7B1HQul+M6Xib+5LPCoslvbUbj6Iw0S48GMZ/uhPmQuwk6Uq/MhxdLYCfMGGNSBztIWzaeb93C4feyNITQfZHsjZnwkB4qSRVEjRSmQq7yhFwK6WwD8MMS6xdbbmOyVBHD0L48ejswc8OtaX1pqB1w/zvgLYa09C9zQYnKKIIyjiQJ+WKjex7Y9w50on5DNeNtRkIgxyafTb7PTRnPFjdVxZV9C0zbE77fW0lCNDSH11yzT/L47ju+hMAWUk1tHh3qIR6tQNsqHUYM=
+  file: communication.pdf
+  skip_cleanup: true
+  on:
+    repo: NBKZiman/communicationTCPIP
+tags: true
